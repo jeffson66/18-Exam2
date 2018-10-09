@@ -3,7 +3,7 @@ Exam 2, problem 1.
 
 Authors: David Mutchler, Dave Fisher, Matt Boutell, their colleagues,
          and PUT_YOUR_NAME_HERE.  October 2018.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+"""  # Jiafan Lin
 
 import time
 import testing_helper
@@ -48,10 +48,10 @@ def main():
     print('Un-comment the calls in MAIN one by one')
     print(' to run the testing code as you complete the TODOs.')
 
-    # run_test_problem1a()
-    # run_test_problem1b()
-    # run_test_problem1c()
-    # run_test_problem1d()
+    run_test_problem1a()
+    run_test_problem1b()
+    run_test_problem1c()
+    run_test_problem1d()
 
 
 def run_test_problem1a():
@@ -183,6 +183,10 @@ def run_test_problem1a():
 
 
 def problem1a(strings):
+    ll = []
+    for k in range(len(strings)):
+        ll = ll + [len(strings[k])]
+    return ll
     """
     What comes in:
       -- a sequence of strings
@@ -352,6 +356,11 @@ def run_test_problem1b():
 
 
 def problem1b(strings):
+    count = 0
+    for k in range(len(strings)):
+        if is_prime(len(strings[k])) == True:
+            count = count + 1
+    return count
     """
     What comes in:
       -- a sequence of strings
@@ -542,6 +551,17 @@ def run_test_problem1c():
 # (including possibly your own functions) appropriately, else NO credit for it.
 # -----------------------------------------------------------------------------
 def problem1c(strings):
+    f = True
+    for k in range(len(strings)):
+        if  is_prime(problem1b(strings)) == True :
+            f = True
+        else:
+           f = False
+    if strings == []:
+        f = False
+
+    return f
+
     """
     What comes in:
       -- a sequence of strings
@@ -594,6 +614,7 @@ def problem1c(strings):
 
 
 def run_test_problem1d():
+
     """ Tests the   problem1d   function. """
     print()
     print('--------------------------------------------------')
@@ -736,6 +757,10 @@ def run_test_problem1d():
 
 
 def problem1d(strings):
+    for k in range(len(strings)):
+        if is_prime(len(strings[k])) == True:
+            return strings[k]
+    return -1
     """
     What comes in:
       -- a sequence of strings

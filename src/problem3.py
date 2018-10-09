@@ -25,10 +25,10 @@ def main():
     print('Un-comment the calls in MAIN one by one')
     print(' to run the testing code as you complete the TODOs.')
 
-    # run_test_init()
-    # run_test_rain()
-    # run_test_get_total_rain_amount()
-    # run_test_merge_cloud()
+    run_test_init()
+    run_test_rain()
+    run_test_get_total_rain_amount()
+    run_test_merge_cloud()
 
 
 ###############################################################################
@@ -45,6 +45,12 @@ class Cloud(object):
     """
 
     def __init__(self, capacity, water):
+        self.capacity = capacity
+        self.storerain = 0
+        if water > self.capacity:
+            self.water = capacity
+        else:
+            self.water = water
         """
         What comes in:
           -- capacity, a number representing the maximum amount of water
@@ -80,6 +86,14 @@ class Cloud(object):
         # ---------------------------------------------------------------------
 
     def rain(self, rain_amount):
+        if rain_amount >= self.water:
+           rain_amount = self.water
+           self.water = 0
+
+        else:
+            self.water = self.water - rain_amount
+        self.storerain = rain_amount + self.storerain
+        return rain_amount
         """
         What comes in:
           -- self
@@ -127,6 +141,7 @@ class Cloud(object):
 
 
     def get_total_rain_amount(self):
+        return self.storerain
         """
         What comes in:
           -- self
@@ -161,6 +176,14 @@ class Cloud(object):
 
 
     def merge_cloud(self, another_cloud):
+        if self.capacity + another_cloud.capacity > self.water + another_cloud.water:
+            self.capacity = self.capacity + another_cloud.capacity
+            self.water = self.water + another_cloud.water
+            another_cloud.capacity = 0
+            another_cloud.water = 0
+        else:
+            self.capacity = self.capacity + another_cloud.capacity
+            self.water = self.capacity + another_cloud.capacity
         """
         What comes in:
           -- self
